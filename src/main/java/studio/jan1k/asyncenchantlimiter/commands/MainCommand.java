@@ -31,7 +31,6 @@ public class MainCommand implements CommandExecutor {
             return true;
         }
 
-        // /el or /el gui or /el admin -> Open GUI
         if (args.length == 0 || args[0].equalsIgnoreCase("gui") || args[0].equalsIgnoreCase("admin")) {
             if (!(sender instanceof Player player)) {
                 sender.sendMessage("This command is for players only.");
@@ -50,7 +49,6 @@ public class MainCommand implements CommandExecutor {
             return true;
         }
 
-        // Help
         String prefix = config.getMessage("prefix");
         sender.sendMessage(prefix + "§7Usage: /el [gui|admin|reload]");
         return true;

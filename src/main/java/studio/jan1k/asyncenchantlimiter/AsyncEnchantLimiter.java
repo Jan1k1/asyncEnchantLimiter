@@ -57,7 +57,6 @@ public class AsyncEnchantLimiter extends JavaPlugin {
                 getServer().getPluginManager()
                                 .registerEvents(new studio.jan1k.asyncenchantlimiter.gui.LimitGUI(this, 0), this);
 
-                // Update checker logic could be here, but using Logs.info
         }
 
         private void printBanner() {

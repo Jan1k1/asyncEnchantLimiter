@@ -49,7 +49,6 @@ public class LimitGUI implements InventoryHolder, Listener {
         loadItems();
     }
 
-    // Required for Listener registration
     public LimitGUI() {
     }
 
@@ -74,13 +73,11 @@ public class LimitGUI implements InventoryHolder, Listener {
             ItemStack item = new ItemStack(Material.ENCHANTED_BOOK);
             ItemMeta meta = item.getItemMeta();
 
-            // Format Title: Use Small Caps + Gold
             String title = TextUtils.toSmallCaps(key.replace("_", " "));
             meta.displayName(Component.text(title, NamedTextColor.GOLD).decoration(TextDecoration.ITALIC, false));
 
             List<Component> lore = new ArrayList<>();
 
-            // Format Limit Value
             String limitDisplay;
             if (currentLimit == Integer.MAX_VALUE) {
                 limitDisplay = "Uncapped";
@@ -109,14 +106,12 @@ public class LimitGUI implements InventoryHolder, Listener {
 
             meta.lore(lore);
 
-            // Store index
             meta.getPersistentDataContainer().set(new NamespacedKey(plugin, "index"), PersistentDataType.INTEGER,
                     index);
             item.setItemMeta(meta);
             inventory.setItem(i, item);
         }
 
-        // Navigation
         if (page > 0) {
             ItemStack prev = new ItemStack(Material.ARROW);
             ItemMeta meta = prev.getItemMeta();
@@ -154,7 +149,6 @@ public class LimitGUI implements InventoryHolder, Listener {
         if (!(event.getView().getTopInventory().getHolder() instanceof LimitGUI))
             return;
 
-        // Prevent moving items in the GUI
         if (event.getClickedInventory().getHolder() instanceof LimitGUI) {
             event.setCancelled(true);
         } else if (event.isShiftClick()) {
@@ -170,7 +164,6 @@ public class LimitGUI implements InventoryHolder, Listener {
         if (clicked == null || clicked.getType() == Material.AIR)
             return;
 
-        // Page Navigation
         if (clicked.getType() == Material.ARROW) {
             if (event.getSlot() == 48) {
                 new LimitGUI(gui.plugin, gui.page - 1).open(player);
@@ -196,32 +189,27 @@ public class LimitGUI implements InventoryHolder, Listener {
         ClickType click = event.getClick();
 
         if (click == ClickType.DROP || click == ClickType.CONTROL_DROP) {
-            // Uncap
             currentLimit = Integer.MAX_VALUE;
         } else if (click == ClickType.SHIFT_LEFT) {
-            // Disable
             currentLimit = 0;
         } else if (click == ClickType.SHIFT_RIGHT) {
-            // Vanilla Max
             currentLimit = vanillaMax;
         } else if (event.isLeftClick()) {
-            // +1
             if (currentLimit == Integer.MAX_VALUE) {
-                currentLimit = 0; // Reset to 0 (Disabled) if we left-click while uncapped
+                currentLimit = 0;
             } else {
                 currentLimit++;
             }
         } else if (event.isRightClick()) {
-            // -1
             if (currentLimit == Integer.MAX_VALUE) {
-                currentLimit = vanillaMax; // Snap to vanilla max if coming down from infinity
+                currentLimit = vanillaMax;
             } else if (currentLimit > 0) {
                 currentLimit--;
             }
         }
 
         config.saveLimit(enchantKey, currentLimit);
-        gui.loadItems(); // Refresh GUI
+        gui.loadItems();
         player.playSound(player.getLocation(), org.bukkit.Sound.UI_BUTTON_CLICK, 1f, 1f);
     }
 }

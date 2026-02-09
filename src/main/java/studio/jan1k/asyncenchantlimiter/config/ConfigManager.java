@@ -124,10 +124,8 @@ public class ConfigManager {
 
         final String finalKey = key;
 
-        // Update cache immediately for instant GUI feedback
         limits.put(finalKey, level);
 
-        // Save to disk asynchronously to prevent main-thread lag (Spark Optimization)
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             synchronized (this) {
                 config.set("limits." + finalKey, level);

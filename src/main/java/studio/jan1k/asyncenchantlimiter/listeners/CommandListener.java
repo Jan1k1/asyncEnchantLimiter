@@ -21,21 +21,14 @@ public class CommandListener implements Listener {
     @EventHandler
     public void onCommand(PlayerCommandPreprocessEvent event) {
         String msg = event.getMessage().toLowerCase();
-        // Check for vanilla or plugin enchantment commands
         if (msg.startsWith("/enchant ") || msg.startsWith("/minecraft:enchant ") || msg.startsWith("/ie enchant")
                 || msg.startsWith("/enchant")) {
             Player player = event.getPlayer();
-            // Wait 1 tick for the command to execute and modify the item
             Bukkit.getScheduler().runTaskLater(plugin, () -> {
                 if (!player.isOnline())
                     return;
                 ItemStack item = player.getInventory().getItemInMainHand();
                 if (EnforcementUtil.checkAndFixItem(item)) {
-                    // Notification is handled inside EnforcementUtil -> ConfigManager check within
-                    // the Util or external?
-                    // Wait, EnforcementUtil checkAndFixItem returns boolean if fixed.
-                    // The notification logic is usually inside the listener calling it.
-                    // I should add notification logic here.
                     studio.jan1k.asyncenchantlimiter.config.ConfigManager config = plugin.getConfigManager();
                     if (config.isNotifyPlayer() && !config.isSilentMode()) {
                         String message = config.getMessage("limit-breached");
