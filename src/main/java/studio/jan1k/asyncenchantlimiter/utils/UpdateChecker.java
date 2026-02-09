@@ -34,7 +34,7 @@ public class UpdateChecker implements Listener {
                     consumer.accept(scanner.next());
                 }
             } catch (IOException exception) {
-                plugin.getLogger().info("Unable to check for updates: " + exception.getMessage());
+                Logs.info("Unable to check for updates: " + exception.getMessage());
             }
         });
     }
