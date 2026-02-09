@@ -1,6 +1,7 @@
 
 package studio.jan1k.asyncenchantlimiter.config;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -121,13 +122,15 @@ public class ConfigManager {
             key = key.split(":")[1];
         }
 
+        final String finalKey = key;
+
         // Update cache immediately for instant GUI feedback
-        limits.put(key, level);
+        limits.put(finalKey, level);
 
         // Save to disk asynchronously to prevent main-thread lag (Spark Optimization)
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             synchronized (this) {
-                config.set("limits." + key, level);
+                config.set("limits." + finalKey, level);
                 try {
                     config.save(configFile);
                 } catch (IOException e) {
