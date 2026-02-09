@@ -63,9 +63,9 @@ public class AsyncEnchantLimiter extends JavaPlugin {
                                 this);
                 getServer().getPluginManager()
                                 .registerEvents(new studio.jan1k.asyncenchantlimiter.gui.LimitGUI(this, 0), this);
-                getServer().getPluginManager()
-                                .registerEvents(new studio.jan1k.asyncenchantlimiter.utils.UpdateChecker(this, 12345),
-                                                this);
+                // getServer().getPluginManager().registerEvents(
+                // new studio.jan1k.asyncenchantlimiter.utils.UpdateChecker(this, 12345),
+                // this);
         }
 
         @Override
