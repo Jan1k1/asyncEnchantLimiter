@@ -7,7 +7,7 @@
 
 ---
 
-## ⚡ Why AsyncEnchantLimiter?
+## Why AsyncEnchantLimiter?
 
 *   **Folia Supported**: Native threading and region scheduler support.
 *   **Zero Bypasses**: Strict checks on Hold, Click, Equip, Trade, Anvil, Fishing, and Loot Gen.
@@ -15,7 +15,7 @@
 *   **Villager Control**: Auto-fixes illegal trades from villagers instantly.
 *   **Branded Experience**: "No-AI" vibe with sleek hex-color messaging and small caps fonts.
 
-## 📸 Screenshots
+## Screenshots
 
 ![GUI Screenshot](INSERT_GUI_SCREENSHOT_HERE)
 *Easily manage limits via in-game GUI*
@@ -23,7 +23,7 @@
 ![Chat Alert](INSERT_CHAT_SCREENSHOT_HERE)
 *Sleek alerts when players try to use illegal items*
 
-## 🛠️ Features
+## Features
 
 *   **Global Limits**: Set max levels for any enchantment (e.g., Sharpness 5, Protection 4).
 *   **Anvil Blocking**: Prevents combining items to exceed limits (returns empty result).
@@ -33,7 +33,7 @@
 *   **GUI Editor**: Edit limits in-game with `/el gui`.
 *   **Async Updates**: Checks for updates without freezing the server.
 
-## 🔧 Configuration
+## Configuration
 
 Simple, powerful, and clean.
 
@@ -50,14 +50,14 @@ limits:
   protection: 4
 ```
 
-## 📥 Installation
+## Installation
 
 1.  Download the JAR.
 2.  Drop it into your `plugins` folder.
 3.  Restart your server.
 4.  (Optional) Configure limits via `/el gui` or `config.yml`.
 
-## 🔒 Permissions
+## Permissions
 
 *   `enchantlimiter.admin` - Access to `/el gui` and `/el reload`.
 *   `enchantlimiter.bypass` - Bypass all checks and limits.
