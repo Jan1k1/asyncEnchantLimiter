@@ -85,8 +85,8 @@ public class ConfigManager {
         if (msg.isEmpty())
             return "";
 
-        msg = studio.jan1k.asyncenchantlimiter.utils.ColorUtil.colorize(msg);
         msg = studio.jan1k.asyncenchantlimiter.utils.TextUtils.toSmallCaps(msg);
+        msg = studio.jan1k.asyncenchantlimiter.utils.ColorUtil.colorize(msg);
 
         messageCache.put(key, msg);
         return msg;
