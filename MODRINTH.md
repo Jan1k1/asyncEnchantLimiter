@@ -1,52 +1,57 @@
-# AsyncEnchantLimiter
-### The #1 Optimized, Folia-Supported Enchantment Limit Plugin for Minecraft 1.20+
+# AsyncEnchantLimiter | Best Optimized Enchantment Limiter
+### Built for Folia & modern Paper servers - No more lag from over-enchanted items.
 
-![Banner](https://cdn.modrinth.com/data/cached_images/45c7bb4b6dcc75ec701cea28e4c1961328ce0fe3.png)
+![banner](https://cdn.modrinth.com/data/cached_images/45c7bb4b6dcc75ec701cea28e4c1961328ce0fe3.png)
 
-**AsyncEnchantLimiter** is the ultimate solution for server owners who need strict, high-performance control over enchantment levels. Built from the ground up for **Folia** and modern Paper servers, it ensures zero lag while preventing over-enchanted items from ruining your economy or PvP balance.
-
----
-
-## Premium Interface
-
-![GUI Screenshot](gui_screenshot_url)
-*Manage every enchantment limit instantly through our intuitive, paginated GUI.*
-
-![Chat Alert](chat_alert_url)
-*Clean, hex-colored notifications keep players informed without cluttering the chat.*
-
-![Console Branding](console_branding_url)
-*Professional "Premium" branding with custom ASCII art on startup.*
+**AsyncEnchantLimiter** is a simple but powerful plugin that stops players from using items with enchantments above your set limits. It was built from scratch to be the fastest option out there, specifically designed for **Folia** and heavy Paper servers where other plugins might cause TPS drops.
 
 ---
 
-## Why AsyncEnchantLimiter?
+## Features you'll love
 
-*   **Folia Supported**: Native threading and region scheduler support for multi-threaded servers.
-*   **Zero Bypasses**: Strict checks on Hold, Click, Equip, Trade, Anvil, Fishing, and Loot Gen.
-*   **High Performance**: All IO and heavy checks are handled asynchronously to keep TPS at 20.0.
-*   **Villager Control**: Auto-fixes illegal trades from villagers instantly.
-*   **Branded Experience**: A clean, professional aesthetic with hex-colored messaging and custom fonts.
+### Easy to use GUI
+Manage every enchantment limit right in the game. It's paginated, fast, and stays in sync as you change things.
+![gui](https://cdn.modrinth.com/data/cached_images/f0e8f65a867eda04376a152209b800d3cf912483.png)
 
-## Key Features
+### Clean Notifications
+No ugly spam. Players get a clean, themed message when an item gets downgraded so they know exactly what happened.
+![blocked](https://cdn.modrinth.com/data/cached_images/922034be217dd43362e772c98b455c4ec21ddcb1.png)
 
-*   **Global Limits**: Set max levels for any enchantment (e.g., Sharpness 5, Protection 4).
-*   **Anvil Blocking**: Prevents combining items to exceed limits (returns empty result).
-*   **Loot Control**: Limits items from fishing, mob drops, and dungeon chests.
-*   **Villager Trade Fixer**: Automatically downgrades over-enchanted trades from villagers.
-*   **Silent Mode**: Option to silently downgrade items without notifying the player.
-*   **In-Game Editor**: Modify limits on the fly with `/el gui` or `/el admin`.
+---
 
-## Configuration
+## Why choose this plugin?
 
-Simple, powerful, and clean. Everything is separated into `config.yml` and `messages.yml`.
+*   **Native Folia Support**: Works perfectly with Folia's region scheduler. No crashes or thread issues.
+*   **Truly Asynchronous**: We handle all the heavy lifting (like saving files and scanning items) off the main thread so your server stays at 20.0 TPS.
+*   **Total Control**: Checks items when players hold them, click them, equip them, or trade them. Nothing slips through.
+*   **Villager Fixer**: Tired of villagers trading Sharpness 10? This plugin fixes those trades automatically the second they appear.
+*   **Premium Look**: Uses a nice pink/gray theme with custom small-caps text that looks great in any chat.
+
+## What it can do
+
+*   **Set Max Levels**: Easily cap any enchantment (like Sharpness 5, Prot 4, or whatever you want).
+*   **Anvil Blocking**: Stops players from combining items to go past your limits.
+*   **Loot Cleaning**: Automatically checks and fixes items from fishing, mob drops, and dungeon chests.
+*   **Admin Tools**: Change everything in-game with `/el gui` or quickly reload with `/el reload`.
+*   **Bypass Permissions**: Give certain ranks (like staff) the ability to use over-enchanted items if needed.
+
+## Commands & Permissions
+
+| Command | Alias | Description | Permission |
+| :--- | :--- | :--- | :--- |
+| `/enchantlimiter` | `/el` | Open the main menu. | `enchantlimiter.admin` |
+| `/el gui` | | Open the limit editor. | `enchantlimiter.admin` |
+| `/el reload` | | Reload all configs. | `enchantlimiter.admin` |
+
+## Simple Setup
+Just drop the jar in your plugins folder and you're good to go. The config is super clean and easy to read:
 
 ```yaml
 settings:
-  enforce-on-hold: true    # Checks when swapping hotbar slots
-  fix-villager-trades: true # Auto-corrects villagers
-  notify-player: true      # Alert players on downgrade
-  silent-mode: false       # Disable alerts for stealth enforcement
+  enforce-on-hold: true    # Check items as players hold them
+  fix-villager-trades: true # Auto-fix broken villager trades
+  notify-player: true      # Let players know when an item is fixed
+  silent-mode: false       # Set to true to fix items without any messages
 
 limits:
   sharpness: 5
@@ -54,14 +59,6 @@ limits:
   protection: 4
 ```
 
-## Installation
-
-1.  Download the **AsyncEnchantLimiter** JAR.
-2.  Drop it into your `plugins` folder.
-3.  Restart your server.
-4.  Configure your limits via `/el gui` or the `config.yml`.
-
-## Permissions
-
-*   `enchantlimiter.admin` - Access to the configuration GUI and reload command.
-*   `enchantlimiter.bypass` - Permission to bypass all enchantment restrictions.
+---
+**Found a bug?** If you run into any issues or have a suggestion, please let us know on [Discord](https://discord.gg/38Ebj42e).
+**Keywords**: enchantment, limit, performance, optimized, folia, paper, villager, fix, enforce
