@@ -207,7 +207,7 @@ public class LimitGUI implements InventoryHolder, Listener {
         } else if (event.isLeftClick()) {
             // +1
             if (currentLimit == Integer.MAX_VALUE) {
-                // Already max
+                currentLimit = 0; // Reset to 0 (Disabled) if we left-click while uncapped
             } else {
                 currentLimit++;
             }
