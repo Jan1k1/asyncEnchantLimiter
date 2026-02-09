@@ -14,7 +14,7 @@ import java.util.Map;
 public class EnforcementUtil {
 
     public static boolean checkAndFixItem(ItemStack item) {
-        if (item == null || item.getType() == Material.AIR)
+        if (item == null || item.getType() == Material.AIR || !item.hasItemMeta())
             return false;
 
         boolean changed = false;

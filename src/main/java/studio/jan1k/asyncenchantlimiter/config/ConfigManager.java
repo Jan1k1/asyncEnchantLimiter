@@ -22,6 +22,7 @@ public class ConfigManager {
     private FileConfiguration messagesConfig;
 
     private final Map<String, Integer> limits = new HashMap<>();
+    private final Map<String, String> messageCache = new HashMap<>();
 
     public ConfigManager(AsyncEnchantLimiter plugin) {
         this.plugin = plugin;
@@ -41,6 +42,7 @@ public class ConfigManager {
         config = YamlConfiguration.loadConfiguration(configFile);
         messagesConfig = YamlConfiguration.loadConfiguration(messagesFile);
         loadLimits();
+        messageCache.clear();
     }
 
     public CompletableFuture<Void> reload() {
@@ -74,9 +76,19 @@ public class ConfigManager {
     }
 
     public String getMessage(String key) {
+        if (messageCache.containsKey(key)) {
+            return messageCache.get(key);
+        }
+
         String msg = messagesConfig.getString(key, "");
+        if (msg.isEmpty())
+            return "";
+
         msg = studio.jan1k.asyncenchantlimiter.utils.ColorUtil.colorize(msg);
-        return studio.jan1k.asyncenchantlimiter.utils.TextUtils.toSmallCaps(msg);
+        msg = studio.jan1k.asyncenchantlimiter.utils.TextUtils.toSmallCaps(msg);
+
+        messageCache.put(key, msg);
+        return msg;
     }
 
     public boolean isEnforceOnHold() {
@@ -109,12 +121,19 @@ public class ConfigManager {
             key = key.split(":")[1];
         }
 
-        config.set("limits." + key, level);
-        try {
-            config.save(configFile);
-            limits.put(key, level);
-        } catch (IOException e) {
-            plugin.getLogger().log(Level.SEVERE, "Could not save config.yml", e);
-        }
+        // Update cache immediately for instant GUI feedback
+        limits.put(key, level);
+
+        // Save to disk asynchronously to prevent main-thread lag (Spark Optimization)
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+            synchronized (this) {
+                config.set("limits." + key, level);
+                try {
+                    config.save(configFile);
+                } catch (IOException e) {
+                    plugin.getLogger().log(Level.SEVERE, "Could not save config.yml", e);
+                }
+            }
+        });
     }
 }
