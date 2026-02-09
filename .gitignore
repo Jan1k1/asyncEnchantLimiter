@@ -1,0 +1,7 @@
+gradlew.bat
+gemini.md
+build/
+.gradle/
+.idea/
+*.iml
+*.log

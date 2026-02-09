@@ -1,0 +1,34 @@
+# AsyncEnchantLimiter Configuration
+
+settings:
+  # Checks items when a player switches slots in their hotbar (1-9).
+  # If true, items exceeding limits will be fixed immediately upon holding them.
+  enforce-on-hold: true
+
+  # Checks items when a player interacts (right-click/left-click) with an item.
+  # This covers using items, placing blocks, or attacking.
+  enforce-on-click: true
+
+  # Checks armor when it is equipped via inventory, right-click, or dispenser.
+  # Also checks armor slots when a player joins the server.
+  enforce-on-equip: true
+
+  # Automatically fixes villager trades to never offer enchantments above the limit.
+  # Checks both when a trade is generated (level up) and when a player clicks a villager (existing trades).
+  fix-villager-trades: true
+
+  # If true, sends a message to the player when their item is modified or an action is blocked.
+  notify-player: true
+
+  # If true, all "limit breached" messages are suppressed.
+  # Useful if you want the plugin to just silently fix things without spamming chat.
+  silent-mode: false
+
+# Enchantment Limits
+# Format: enchantment_name: max_level
+# If an enchantment is not listed here, it is treated as having NO LIMIT (Integer.MAX_VALUE).
+# Any enchantment above this level will be downgraded to this level.
+limits:
+  sharpness: 5
+  efficiency: 5
+  protection: 4
