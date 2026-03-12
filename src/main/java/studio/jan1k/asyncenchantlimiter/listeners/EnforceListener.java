@@ -100,11 +100,13 @@ public class EnforceListener implements Listener {
     }
 
     private void handleCheck(Player player, ItemStack item) {
+        if (item == null || item.getType().isAir()) return;
+        
         if (EnforcementUtil.checkAndFixItem(item)) {
             ConfigManager config = plugin.getConfigManager();
             if (config.isNotifyPlayer() && !config.isSilentMode()) {
                 String msg = config.getMessage("limit-breached");
-                if (!msg.isEmpty()) {
+                if (msg != null && !msg.isEmpty()) {
                     player.sendMessage(config.getMessage("prefix") + msg);
                 }
             }
